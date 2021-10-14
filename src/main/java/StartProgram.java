@@ -1,8 +1,8 @@
 import java.util.List;
 import java.util.Scanner;
 
-import controller.DinosaurHelper;
-import model.Dinosaur;
+import controller.HousePetItemHelper;
+import model.HousePetItem;
 
 /**
  * @author alexanderpontier - ampontier1
@@ -17,63 +17,63 @@ import model.Dinosaur;
 public class StartProgram {
 	
 	static Scanner in = new Scanner(System.in);
-	static DinosaurHelper dh = new DinosaurHelper();
+	static HousePetItemHelper hpih = new HousePetItemHelper();
 
-	private static void addADino() {
+	private static void addAPet() {
 		// TODO Auto-generated method stub
 		System.out.print("Enter a species: ");
 		String species = in.nextLine();
-		System.out.print("Enter an color: ");
-		String color = in.nextLine();
-		Dinosaur toAdd = new Dinosaur(species,color);
-		dh.insertDino(toAdd);
+		System.out.print("Enter an name: ");
+		String name = in.nextLine();
+		HousePetItem toAdd = new HousePetItem(species,name);
+		hpih.insertPet(toAdd);
 
 	}
 
-	private static void deleteADino() {
+	private static void deleteAPet() {
 		// TODO Auto-generated method stub
 		System.out.print("Enter the species to delete: ");
 		String species = in.nextLine();
 		System.out.print("Enter the color to delete: ");
-		String color = in.nextLine();
-		Dinosaur toDelete = new Dinosaur(species,color);
-		dh.deleteDino(toDelete);
+		String name = in.nextLine();
+		HousePetItem toDelete = new HousePetItem(species,name);
+		hpih.deletePet(toDelete);
 
 	}
 
-	private static void editADino() {
+	private static void editAPet() {
 		// TODO Auto-generated method stub
 		System.out.println("How would you like to search? ");
 		System.out.println("1 : Search by Species");
-		System.out.println("2 : Search by Color");
+		System.out.println("2 : Search by Name");
 		int searchBy = in.nextInt();
 		in.nextLine();
-		List<Dinosaur> foundDinos;
+		List<HousePetItem> foundPets;
 		if (searchBy == 1) {
 			System.out.print("Enter the species name: ");
 			String speciesName = in.nextLine();
-			foundDinos = dh.searchForDinoBySpecies(speciesName);
+			foundPets = hpih.searchForPetBySpecies(speciesName);
 			
 		} else {
 			System.out.print("Enter the color: ");
-			String colorName = in.nextLine();
-			foundDinos = dh.searchForDinoByColor(colorName);
+			String nameName = in.nextLine();
+			foundPets = hpih.searchForPetByName(nameName);
 			
 
 		}
 
-		if (!foundDinos.isEmpty()) {
+		if (!foundPets.isEmpty()) {
 			System.out.println("Found Results.");
-			for (Dinosaur d : foundDinos) {
-				System.out.println(d.getId() + " : " + d.toString());
+			for (HousePetItem hpih : foundPets) {
+				System.out.println(hpih.getId() + " : " + hpih.toString());
 			}
 			System.out.print("Which ID to edit: ");
 			int idToEdit = in.nextInt();
 
-			Dinosaur toEdit = dh.searchForDinoById(idToEdit);
-			System.out.println("Retrieved " + toEdit.getColor() + " from " + toEdit.getSpecies());
+			HousePetItem toEdit = hpih.searchForPetById(idToEdit);
+			System.out.println("Retrieved " + toEdit.getName() + " from " + toEdit.getSpecies());
 			System.out.println("1 : Update Species");
-			System.out.println("2 : Update Color");
+			System.out.println("2 : Update Name");
 			int update = in.nextInt();
 			in.nextLine();
 
@@ -82,12 +82,12 @@ public class StartProgram {
 				String newSpecies = in.nextLine();
 				toEdit.setSpecies(newSpecies);
 			} else if (update == 2) {
-				System.out.print("New Color: ");
-				String newColor = in.nextLine();
-				toEdit.setColor(newColor);
+				System.out.print("New Name: ");
+				String newName = in.nextLine();
+				toEdit.setName(newName);
 			}
 
-			dh.updateDino(toEdit);
+			hpih.updatePet(toEdit);
 
 		} else {
 			System.out.println("---- No results found");
@@ -103,30 +103,30 @@ public class StartProgram {
 
 	public static void runMenu() {
 		boolean goAgain = true;
-		System.out.println("--- Welcome to the Jurassic World Database! ---");
-		System.out.println("-------- Please enter the new species: --------");
+		System.out.println("--- Welcome to the CIS 175 HOA Pet Database! ---");
+		System.out.println("-------- Please enter the new pet's species: --------");
 		while (goAgain) {
 			System.out.println("*  Select an item:");
 			System.out.println("*  1 -- Add a species");
 			System.out.println("*  2 -- Edit a species");
 			System.out.println("*  3 -- Delete a species");
 			System.out.println("*  4 -- View the list");
-			System.out.println("*  5 -- Cause mass extnction event :( ");
+			System.out.println("*  5 -- Delete Household :( ");
 			System.out.print("*  Your selection: ");
 			int selection = in.nextInt();
 			in.nextLine();
 
 			if (selection == 1) {
-				addADino();
+				addAPet();
 			} else if (selection == 2) {
-				editADino();
+				editAPet();
 			} else if (selection == 3) {
-				deleteADino();
+				deleteAPet();
 			} else if (selection == 4) {
 				viewTheList();
 			} else {
-				dh.cleanUp();
-				System.out.println("   BOOM!   ");
+				hpih.cleanUp();
+				System.out.println("   Household deleted   ");
 				goAgain = false;
 			}
 
@@ -136,9 +136,9 @@ public class StartProgram {
 
 	private static void viewTheList() {
 		// TODO Auto-generated method stub
-		List<Dinosaur> allDinos = dh.showAllDinos();
-		for(Dinosaur singleDino : allDinos) {
-			System.out.println(singleDino.returnDinos());
+		List<HousePetItem> allPets = hpih.showAllPets();
+		for(HousePetItem singlePet : allPets) {
+			System.out.println(singlePet.returnItemDetails());
 		}
 
 	}
