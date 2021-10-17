@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import model.HousePetItem;
 
 /**
- * Servlet implementation class AddPetServlet
+ * Servlet implementation class AddHousePetServlet
  */
-@WebServlet("/addPetServlet")
-public class AddPetServlet extends HttpServlet {
+@WebServlet("/addHousePetServlet")
+public class AddHousePetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddPetServlet() {
+    public AddHousePetServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

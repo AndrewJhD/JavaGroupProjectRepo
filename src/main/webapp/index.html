@@ -1,39 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
-<title>Title page for adding pets</title>
+<meta charset="ISO-8859-1">
+<title>Puppy List</title>
 </head>
 <body>
-
-	<div class="container">
-		<h2>Add a Pet to the household</h2>
-
-		<form action="addDinoServlet" method="post">
-	<div class="form-group">
-		<label for="species">Species:</label><input type ="text" name = "species"><br />
-
-	</div>
-	<div class="form-group">
-		<label for="name">Name:</label>
-		<input type = "text" name = "name"><br />
-	</div>
-
-		<input type = "submit" value="Add Pet" class="btn btn-primary">
-	</form>
-		<br />
-		<button type="button" class="btn btn-primary btn-lg" onclick="location.href='viewAllDinosServlett';">View the complete list</button>
-		<a href = "viewAllDinosServlett"></a>
-	</div>
-	
-<a href="viewAllSurveysServlet">View all surveys</a> <br />
-<a href="addDinosForSurveyServlet">Create a new survey</a>
-
+<form action ="addHousePetServlet" method="post">
+Puppy: <input type ="text" name ="name">
+Breed: <input type ="text" name = "species">
+<input type ="submit"value="Add HousePet">
+</form><br/>
+<a href ="viewAllHousePetsServlet">View the complete pet info list</a> <br/>
+<a href = "viewAllListsServlet">View all registered house pet lists</a><br />
+<a href = "addItemsForListServlet">Create a new list</a> <br/>
 </body>
 </html>
