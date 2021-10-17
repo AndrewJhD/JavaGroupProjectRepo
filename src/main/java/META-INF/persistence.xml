@@ -3,6 +3,9 @@
 	<persistence-unit name="JavaGroupProjectRepo" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>model.HousePetItem</class>
+		<class>model.Owner</class>
+		<class>model.ListDetails</class>
+		<class>controller.LocalDateAttributeConverter</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
