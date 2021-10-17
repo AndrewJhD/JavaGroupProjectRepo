@@ -12,7 +12,7 @@ import model.HousePetItem;
 /**
  * Servlet implementation class AddPetServlet
  */
-@WebServlet("/AddPetServlet")
+@WebServlet("/addPetServlet")
 public class AddPetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,9 +36,9 @@ public class AddPetServlet extends HttpServlet {
 			
 		} else {
 			
-			HousePetItem di = new HousePetItem(species, name);
-			HousePetItemHelper dino = new HousePetItemHelper();
-			dino.insertPet(di);
+			HousePetItem hpi = new HousePetItem(species, name);
+			HousePetItemHelper pet = new HousePetItemHelper();
+			pet.insertPet(hpi);
 			
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 		}

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AddPetForListServlet
  */
-@WebServlet("/AddPetForListServlet")
+@WebServlet("/addPetForListServlet")
 public class AddPetForListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,10 +28,10 @@ public class AddPetForListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HousePetItemHelper hpih = new HousePetItemHelper();
 		
-		request.setAttribute("allPets", hpih.showAllPets());
+		request.setAttribute("allHousePets", hpih.showAllPets());
 		
 		if(hpih.showAllPets().isEmpty()) {
-			request.setAttribute("allPets", " ");
+			request.setAttribute("allHousePets", " ");
 		}
 		
 		getServletContext().getRequestDispatcher("/new-survey.jsp").forward(request, response);
