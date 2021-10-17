@@ -12,7 +12,7 @@ import model.HousePetItem;
 /**
  * Servlet implementation class AddPetServlet
  */
-@WebServlet("/AddPetServlet")
+@WebServlet("/addPetServlet")
 public class AddPetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
