@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import model.HousePetItem;
-
+//pi = petitem for short
 public class ListHousePetHelper {
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("HousePetList");
 	

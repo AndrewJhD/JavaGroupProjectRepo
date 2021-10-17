@@ -29,7 +29,7 @@ public class ViewAllHousePetsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ListHousePetHelper dao = new ListHousePetHelper();
-		request.setAttribute("allHousePetss", dao.showAllItems());
+		request.setAttribute("allHousePets", dao.showAllItems());
 				String path = "/housepets-list.jsp";
 				if
 				(dao.showAllItems().isEmpty()){
