@@ -16,16 +16,16 @@ import model.ListDetails;
 import model.Owner;
 
 /**
- * Servlet implementation class CreateNewHousePetList
+ * Servlet implementation class CreateNewListServlet
  */
-@WebServlet("/createNewHousePetList")
-public class CreateNewHousePetList extends HttpServlet {
+@WebServlet("/createNewListServlet")
+public class CreateNewListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateNewHousePetList() {
+    public CreateNewListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,9 +36,7 @@ public class CreateNewHousePetList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HousePetItemHelper hpih = new HousePetItemHelper();
-		String listName = request.getParameter("listName");
-		System.out.println("Household Name: "+ listName);
-		
+		String listName = request.getParameter("listName");		
 		String month = request.getParameter("month");
 		String day = request.getParameter("day");
 		String year = request.getParameter("year");
@@ -57,7 +55,7 @@ public class CreateNewHousePetList extends HttpServlet {
 			
 			for(int i = 0; i<selectedItems.length; i++) {
 				System.out.println(selectedItems[i]);
-				HousePetItem c = hpih.searchForPetById(Integer.parseInt(selectedItems[i]));
+				HousePetItem c = hpih.searchForItemById(Integer.parseInt(selectedItems[i]));
 				selectedItemsInList.add(c);
 			}
 		}
@@ -68,8 +66,6 @@ public class CreateNewHousePetList extends HttpServlet {
 		ListDetailsHelper ldh = new ListDetailsHelper();
 		ldh.insertNewListDetails(listD);
 		
-		System.out.println("Success!");
-		System.out.println(listD.toString());
 		
 		getServletContext().getRequestDispatcher("/viewAllHousePetsServlet").forward(request, response);
 	}

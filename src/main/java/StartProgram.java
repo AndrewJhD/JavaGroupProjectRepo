@@ -25,8 +25,8 @@ public class StartProgram {
 		String species = in.nextLine();
 		System.out.print("Enter an name: ");
 		String name = in.nextLine();
-		HousePetItem toAdd = new HousePetItem(species,name);
-		hpih.insertPet(toAdd);
+		HousePetItem toAdd = new HousePetItem(name,species);
+		hpih.insertItems(toAdd);
 
 	}
 
@@ -36,8 +36,8 @@ public class StartProgram {
 		String species = in.nextLine();
 		System.out.print("Enter the color to delete: ");
 		String name = in.nextLine();
-		HousePetItem toDelete = new HousePetItem(species,name);
-		hpih.deletePet(toDelete);
+		HousePetItem toDelete = new HousePetItem(name,species);
+		hpih.deleteItems(toDelete);
 
 	}
 
@@ -70,7 +70,7 @@ public class StartProgram {
 			System.out.print("Which ID to edit: ");
 			int idToEdit = in.nextInt();
 
-			HousePetItem toEdit = hpih.searchForPetById(idToEdit);
+			HousePetItem toEdit = hpih.searchForItemById(idToEdit);
 			System.out.println("Retrieved " + toEdit.getName() + " from " + toEdit.getSpecies());
 			System.out.println("1 : Update Species");
 			System.out.println("2 : Update Name");
@@ -87,7 +87,7 @@ public class StartProgram {
 				toEdit.setName(newName);
 			}
 
-			hpih.updatePet(toEdit);
+			hpih.updateItem(toEdit);
 
 		} else {
 			System.out.println("---- No results found");
@@ -136,7 +136,7 @@ public class StartProgram {
 
 	private static void viewTheList() {
 		// TODO Auto-generated method stub
-		List<HousePetItem> allPets = hpih.showAllPets();
+		List<HousePetItem> allPets = hpih.showAllItems();
 		for(HousePetItem singlePet : allPets) {
 			System.out.println(singlePet.returnItemDetails());
 		}

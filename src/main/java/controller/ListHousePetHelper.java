@@ -65,26 +65,26 @@ public class ListHousePetHelper {
 		em.close();
 	}
 
-	public List<HousePetItem> searchForBreedByPuppy(String puppyName) {
+	public List<HousePetItem> searchForBreedByPuppy(String animalName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<HousePetItem> typedQuery = em.createQuery("select pi from HousePetItem pi where pi.name = :selectedHousePet", HousePetItem.class);
 		
-		typedQuery.setParameter("selectedHousePet", puppyName);
+		typedQuery.setParameter("selectedHousePet", animalName);
 		
 		List<HousePetItem> foundItems = typedQuery.getResultList();
 		em.close();
 		return foundItems;
 	}
 
-	public List<HousePetItem> searchForBreedByBreed(String nameName) {
+	public List<HousePetItem> searchForBreedByBreed(String animalName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<HousePetItem> typedQuery = em.createQuery("select pi from PuppyItem pi where pi.breed = :selectedSpecies", HousePetItem.class);
 		
-		typedQuery.setParameter("selectedSpecies", nameName);
+		typedQuery.setParameter("selectedSpecies", animalName);
 		
 		List<HousePetItem> foundItems = typedQuery.getResultList();
 		em.close();

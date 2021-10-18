@@ -35,11 +35,11 @@ public class EditHousePetItemServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		int tempId = Integer.parseInt(request.getParameter("id"));
 		
-		HousePetItem housePetToUpdate = housePet.searchForPetById(tempId);
+		HousePetItem housePetToUpdate = housePet.searchForItemById(tempId);
 		housePetToUpdate.setName(name);
 		housePetToUpdate.setSpecies(species);
 		
-		housePet.updatePet(housePetToUpdate);
+		housePet.updateItem(housePetToUpdate);
 		
 		getServletContext().getRequestDispatcher("/viewAllHousePetsServlet").forward(request, response);
 		

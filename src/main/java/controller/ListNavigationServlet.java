@@ -29,6 +29,13 @@ public class ListNavigationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("House Owner: ").append(request.getContextPath());
+
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ListDetailsHelper dao = new ListDetailsHelper();
 		String act = request.getParameter("doThisToList");
 				
@@ -52,9 +59,9 @@ public class ListNavigationServlet extends HttpServlet {
 				ListDetails listToEdit = dao.searchForListDetailsById(tempId);
 				request.setAttribute("listToEdit", listToEdit);
 						
-				request.setAttribute("month", listToEdit.getTripDate().getMonthValue());
-				request.setAttribute("date", listToEdit.getTripDate().getDayOfMonth());
-				request.setAttribute("year", listToEdit.getTripDate().getYear());
+				request.setAttribute("month", listToEdit.getAdoptionDate().getMonthValue());
+				request.setAttribute("date", listToEdit.getAdoptionDate().getDayOfMonth());
+				request.setAttribute("year", listToEdit.getAdoptionDate().getYear());
 						
 				ListDetailsHelper daoForItems = new ListDetailsHelper();
 						
@@ -72,13 +79,5 @@ public class ListNavigationServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher("/new-list.jsp").forward(request, response);
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
-}

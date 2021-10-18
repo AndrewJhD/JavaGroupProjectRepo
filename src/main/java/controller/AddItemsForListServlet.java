@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AddHousePetForListServlet
+ * Servlet implementation class AddItemsForListServlet
  */
-@WebServlet("/addHousePetForListServlet")
-public class AddHousePetForListServlet extends HttpServlet {
+@WebServlet("/addItemsForListServlet")
+public class AddItemsForListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddHousePetForListServlet() {
+    public AddItemsForListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,12 +26,12 @@ public class AddHousePetForListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HousePetItemHelper hpih = new HousePetItemHelper();
+		HousePetItemHelper pih = new HousePetItemHelper();
+		//pih = petitemhelper cuz simple
+		request.setAttribute("allItems", pih.showAllItems());
 		
-		request.setAttribute("allHousePets", hpih.showAllPets());
-		
-		if(hpih.showAllPets().isEmpty()) {
-			request.setAttribute("allHousePets", " ");
+		if(pih.showAllItems().isEmpty()) {
+			request.setAttribute("allItems", "");
 		}
 		
 		getServletContext().getRequestDispatcher("/new-list.jsp").forward(request, response);

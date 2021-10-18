@@ -22,7 +22,7 @@ public class HousePetItemHelper {
 	
 static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("JavaGroupProjectRepo");
 	
-	public void insertPet(HousePetItem hpi) {
+	public void insertItems(HousePetItem hpi) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(hpi);
@@ -30,13 +30,13 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		em.close();
 	}
 	
-	public List<HousePetItem> showAllPets() {
+	public List<HousePetItem> showAllItems() {
 		EntityManager em = emfactory.createEntityManager();
 		List<HousePetItem> allPets = em.createQuery("SELECT i FROM HousePetItem i").getResultList();
 		return allPets;
 	}
 	
-	public void deletePet(HousePetItem toDelete) {
+	public void deleteItems(HousePetItem toDelete) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<HousePetItem> typedQuery = em.createQuery("select hpi from HousePetItem hpi where hpi.species = :selectedSpecies and hpi.name = :selectedName", HousePetItem.class);
@@ -59,7 +59,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		
 	}
 
-	public HousePetItem searchForPetById(int idToEdit) {
+	public HousePetItem searchForItemById(int idToEdit) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -69,7 +69,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		return found;
 	}
 
-	public void updatePet(HousePetItem toEdit) {
+	public void updateItem(HousePetItem toEdit) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();

@@ -27,25 +27,25 @@ public class ListDetails {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ListDetails(int id, String listName, LocalDate tripDate, Owner owner, List<HousePetItem> listOfItems) {
+	public ListDetails(int id, String listName, LocalDate adoptionDate, Owner owner, List<HousePetItem> listOfItems) {
 		super();
 		this.id = id;
 		this.listName = listName;
-		this.adoptionDate = tripDate;
+		this.adoptionDate = adoptionDate;
 		this.owner = owner;
 		this.listOfItems = listOfItems;
 	}
-	public ListDetails(String listName, LocalDate tripDate, Owner owner, List<HousePetItem> listOfItems) {
+	public ListDetails(String listName, LocalDate adoptionDate, Owner owner, List<HousePetItem> listOfItems) {
 		super();
 		this.listName = listName;
-		this.adoptionDate = tripDate;
+		this.adoptionDate = adoptionDate;
 		this.owner = owner;
 		this.listOfItems = listOfItems;
 	}
-	public ListDetails(String listName, LocalDate tripDate, Owner owner) {
+	public ListDetails(String listName, LocalDate adoptionDate, Owner owner) {
 		super();
 		this.listName = listName;
-		this.adoptionDate = tripDate;
+		this.adoptionDate = adoptionDate;
 		this.owner = owner;
 	}
 	public int getId() {
@@ -60,16 +60,16 @@ public class ListDetails {
 	public void setListName(String listName) {
 		this.listName = listName;
 	}
-	public LocalDate getTripDate() {
+	public LocalDate getAdoptionDate() {
 		return adoptionDate;
 	}
-	public void setTripDate(LocalDate tripDate) {
-		this.adoptionDate = tripDate;
+	public void setAdoptionDate(LocalDate adoptiondate) {
+		this.adoptionDate = adoptiondate;
 	}
-	public Owner getShopper() {
+	public Owner getOwner() {
 		return owner;
 	}
-	public void setShopper(Owner owner) {
+	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 	public List<HousePetItem> getListOfItems() {

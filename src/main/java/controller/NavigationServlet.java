@@ -23,7 +23,12 @@ public class NavigationServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    /**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		// TODO Auto-generated method stub
+		response.getWriter().append("Pet Owner: ").append(request.getContextPath());
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -41,8 +46,8 @@ public class NavigationServlet extends HttpServlet {
 			
 			try {
 				int tempId = Integer.parseInt(request.getParameter("id"));
-				HousePetItem housePetToDelete = hpih.searchForPetById(tempId);
-				hpih.deletePet(housePetToDelete);
+				HousePetItem housePetToDelete = hpih.searchForItemById(tempId);
+				hpih.deleteItems(housePetToDelete);
 			} catch (NumberFormatException e) {
 				System.out.println("Forgot to select a Pet");
 			}
@@ -50,7 +55,7 @@ public class NavigationServlet extends HttpServlet {
 		} else if (act.equals("edit")) {
 			try {
 				int tempID = Integer.parseInt(request.getParameter("id"));
-				HousePetItem housePetToEdit = hpih.searchForPetById(tempID);
+				HousePetItem housePetToEdit = hpih.searchForItemById(tempID);
 				request.setAttribute("petToEdit", housePetToEdit);
 				path = "/edit-housepet.jsp";
 			} catch (NumberFormatException e) {

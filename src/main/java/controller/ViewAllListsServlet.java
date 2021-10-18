@@ -31,7 +31,7 @@ public class ViewAllListsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		ListDetailsHelper slh = new ListDetailsHelper();
 		List<ListDetails> abc = slh.getLists();

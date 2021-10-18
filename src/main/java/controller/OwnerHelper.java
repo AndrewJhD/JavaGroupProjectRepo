@@ -25,7 +25,7 @@ List<Owner> allOwners = em.createQuery("SELECT s FROM Owner s").getResultList();
 return allOwners;
 }
 
-public Owner findOwner(String nameToLookUp) {
+/*public Owner findOwner(String nameToLookUp) {
 	// TODO Auto-generated method stub
 	EntityManager em = emfactory.createEntityManager();
 	em.getTransaction().begin();
@@ -42,6 +42,6 @@ public Owner findOwner(String nameToLookUp) {
 	em.close();
 		
 	return foundOwner;
-}
+}*/
 }
 

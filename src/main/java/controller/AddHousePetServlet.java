@@ -30,18 +30,16 @@ public class AddHousePetServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String species = request.getParameter("species");
 		String name = request.getParameter("name");
-		if (species.isEmpty() || name.isEmpty() || species == null || name == null) {
+		/*if (species.isEmpty() || name.isEmpty() || species == null || name == null) {
 			
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 			
-		} else {
-			
-			HousePetItem hpi = new HousePetItem(species, name);
+		} else {*/		
+			HousePetItem hpi = new HousePetItem(name, species);
 			HousePetItemHelper pet = new HousePetItemHelper();
-			pet.insertPet(hpi);
-			
+			pet.insertItems(hpi);
 			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
-		}
+		//}
 	}
 
 }

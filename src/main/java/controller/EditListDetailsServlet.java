@@ -44,7 +44,7 @@ public class EditListDetailsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ListDetailsHelper ldh = new ListDetailsHelper();
+		/*ListDetailsHelper ldh = new ListDetailsHelper();
 		HousePetItemHelper hpih = new HousePetItemHelper();
 		OwnerHelper oh = new OwnerHelper();
 		
@@ -58,7 +58,7 @@ public class EditListDetailsServlet extends HttpServlet {
 		String year = request.getParameter("year");
 		
 		String ownerName = request.getParameter("ownerName");
-		Owner newOwner = oh.findOwner(ownerName);
+		//Owner newOwner = oh.findOwner(ownerName);
 		
 		LocalDate ld;
 		try {
@@ -73,7 +73,7 @@ public class EditListDetailsServlet extends HttpServlet {
 			
 			for (int i = 0; i < selectedHousePets.length; i++) {
 				System.out.println(selectedHousePets[i]);
-				HousePetItem c = hpih.searchForPetById(Integer.parseInt(selectedHousePets[i]));
+				HousePetItem c = hpih.searchForItemById(Integer.parseInt(selectedHousePets[i]));
 				selectedHousePetsInList.add(c);
 			}
 			listDetailsToUpdate.setListOfItems(selectedHousePetsInList);
@@ -85,11 +85,11 @@ public class EditListDetailsServlet extends HttpServlet {
 		
 		listDetailsToUpdate.setListName(newOwnerName);
 		listDetailsToUpdate.setTripDate(ld);
-		listDetailsToUpdate.setShopper(newOwner);
+		listDetailsToUpdate.setOwner(newOwner);
 		
 		ldh.updateList(listDetailsToUpdate);
 		
-		getServletContext().getRequestDispatcher("/viewAllHousePetsServlet").forward(request, response);
+		getServletContext().getRequestDispatcher("/viewAllHousePetsServlet").forward(request, response);*/
 	}
 
 }
