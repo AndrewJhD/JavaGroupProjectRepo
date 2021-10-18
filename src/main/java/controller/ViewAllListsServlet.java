@@ -1,23 +1,27 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ListDetails;
+
 /**
- * Servlet implementation class AddHousePetForListServlet
+ * Servlet implementation class ViewAllListsServlet
  */
-@WebServlet("/addHousePetForListServlet")
-public class AddHousePetForListServlet extends HttpServlet {
+@WebServlet("/viewAllListsServlet")
+public class ViewAllListsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddHousePetForListServlet() {
+    public ViewAllListsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +30,18 @@ public class AddHousePetForListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HousePetItemHelper hpih = new HousePetItemHelper();
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		request.setAttribute("allHousePets", hpih.showAllPets());
+		ListDetailsHelper slh = new ListDetailsHelper();
+		List<ListDetails> abc = slh.getLists();
+		request.setAttribute("allLists", abc);
 		
-		if(hpih.showAllPets().isEmpty()) {
-			request.setAttribute("allHousePets", " ");
+		if(abc.isEmpty()) {
+			request.setAttribute("allLists", " ");
 		}
 		
-		getServletContext().getRequestDispatcher("/new-list.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/housepet-list-by-user.jsp").forward(request, response);
 	}
 
 	/**

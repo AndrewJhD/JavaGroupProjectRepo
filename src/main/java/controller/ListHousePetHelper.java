@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import model.HousePetItem;
 //pi = petitem for short
 public class ListHousePetHelper {
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("HousePetList");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("JavaGroupProjectRepo");
 	
 	public void insertItem(HousePetItem pi) {
 		EntityManager em = emfactory.createEntityManager();
@@ -23,7 +23,7 @@ public class ListHousePetHelper {
 	
 	public List<HousePetItem> showAllItems(){
 		EntityManager em = emfactory.createEntityManager();
-		List<HousePetItem> allItems = em.createQuery("SELECT i from HousePetList i").getResultList();
+		List<HousePetItem> allItems = em.createQuery("SELECT i from ListDetails i").getResultList();
 		return allItems;
 		
 	}
