@@ -63,12 +63,12 @@ public class ListNavigationServlet extends HttpServlet {
 				request.setAttribute("date", listToEdit.getAdoptionDate().getDayOfMonth());
 				request.setAttribute("year", listToEdit.getAdoptionDate().getYear());
 						
-				ListDetailsHelper daoForItems = new ListDetailsHelper();
+				ListHousePetHelper daoForItems = new ListHousePetHelper();
 						
-				request.setAttribute("allDetails", daoForItems.getLists());
+				request.setAttribute("allitems", daoForItems.showAllItems());
 						
-				if(daoForItems.getLists().isEmpty()) {
-					request.setAttribute("allDetails", " ");
+				if(daoForItems.showAllItems().isEmpty()) {
+					request.setAttribute("allitems", " ");
 				}
 						
 				getServletContext().getRequestDispatcher("/edit-list.jsp").forward(request, response);

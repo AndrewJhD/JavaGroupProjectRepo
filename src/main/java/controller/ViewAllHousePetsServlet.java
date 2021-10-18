@@ -30,7 +30,7 @@ public class ViewAllHousePetsServlet extends HttpServlet {
 		
 		ListHousePetHelper dao = new ListHousePetHelper();
 		request.setAttribute("allHousePets", dao.showAllItems());
-				String path = "/housepets-list.jsp";
+				String path = "/housepet-lists.jsp";
 				if
 				(dao.showAllItems().isEmpty()){
 						path = "/index.html";

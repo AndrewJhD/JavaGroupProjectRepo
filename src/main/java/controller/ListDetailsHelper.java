@@ -11,7 +11,7 @@ import model.ListDetails;
 
 public class ListDetailsHelper {
 	
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("HousePetItems");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("JavaGroupProjectRepo");
 
 	public void insertNewListDetails(ListDetails s) {
 		EntityManager em = emfactory.createEntityManager();

@@ -32,8 +32,8 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 	
 	public List<HousePetItem> showAllItems() {
 		EntityManager em = emfactory.createEntityManager();
-		List<HousePetItem> allPets = em.createQuery("SELECT i FROM HousePetItem i").getResultList();
-		return allPets;
+		List<HousePetItem> allHousePets = em.createQuery("SELECT i FROM HousePetItem i").getResultList();
+		return allHousePets;
 	}
 	
 	public void deleteItems(HousePetItem toDelete) {
@@ -43,8 +43,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		
 		//Substitute parameter with actual data from the toDelete item
 		typedQuery.setParameter("selectedSpecies", toDelete.getSpecies());
-		typedQuery.setParameter("selectedName",
-		toDelete.getName());
+		typedQuery.setParameter("selectedName",toDelete.getName());
 		
 		//we only want one result
 		typedQuery.setMaxResults(1);
@@ -59,7 +58,7 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		
 	}
 
-	public HousePetItem searchForItemById(int idToEdit) {
+	public HousePetItem searchForSpeciesById(int idToEdit) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -79,12 +78,12 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		
 	}
 
-	public List<HousePetItem> searchForPetBySpecies(String speciesName) {
+	public List<HousePetItem> searchForSpeciesByName(String speciesName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<HousePetItem> typedQuery = em.createQuery("select hpi from HousePetItem hpi where hpi.species = :selectedSpecies", HousePetItem.class);
-		typedQuery.setParameter("selectedSpecies", speciesName);
+		TypedQuery<HousePetItem> typedQuery = em.createQuery("select hpi from HousePetItem hpi where hpi.name = :selectedName", HousePetItem.class);
+		typedQuery.setParameter("selectedName", speciesName);
 		
 		List<HousePetItem> foundPets = typedQuery.getResultList();
 		em.close();
@@ -92,12 +91,12 @@ static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("
 		return foundPets;
 	}
 
-	public List<HousePetItem> searchForPetByName(String colorName) {
+	public List<HousePetItem> searchForPetByName(String speciesName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<HousePetItem> typedQuery = em.createQuery("select hpi from HousePetItem hpi where hpi.color = :selectedName", HousePetItem.class);
-		typedQuery.setParameter("selectedSpecies", colorName);
+		TypedQuery<HousePetItem> typedQuery = em.createQuery("select hpi from HousePetItem hpi where hpi.species = :selectedName", HousePetItem.class);
+		typedQuery.setParameter("selectedSpecies", speciesName);
 		
 		List<HousePetItem> foundPets = typedQuery.getResultList();
 		em.close();

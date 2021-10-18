@@ -38,7 +38,7 @@ public class NavigationServlet extends HttpServlet {
 		
 		HousePetItemHelper hpih = new HousePetItemHelper();
 		
-		String act = request.getParameter("doThisToDino");
+		String act = request.getParameter("doThisToHousePet");
 		
 		String path = "/viewAllHousePetsServlet";
 		
@@ -46,7 +46,7 @@ public class NavigationServlet extends HttpServlet {
 			
 			try {
 				int tempId = Integer.parseInt(request.getParameter("id"));
-				HousePetItem housePetToDelete = hpih.searchForItemById(tempId);
+				HousePetItem housePetToDelete = hpih.searchForSpeciesById(tempId);
 				hpih.deleteItems(housePetToDelete);
 			} catch (NumberFormatException e) {
 				System.out.println("Forgot to select a Pet");
@@ -55,7 +55,7 @@ public class NavigationServlet extends HttpServlet {
 		} else if (act.equals("edit")) {
 			try {
 				int tempID = Integer.parseInt(request.getParameter("id"));
-				HousePetItem housePetToEdit = hpih.searchForItemById(tempID);
+				HousePetItem housePetToEdit = hpih.searchForSpeciesById(tempID);
 				request.setAttribute("petToEdit", housePetToEdit);
 				path = "/edit-housepet.jsp";
 			} catch (NumberFormatException e) {

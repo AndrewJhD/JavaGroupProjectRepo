@@ -12,7 +12,7 @@ import model.HousePetItem;
 /**
  * Servlet implementation class EditHousePetItemServlet
  */
-@WebServlet("/editHousePetItemServlet")
+@WebServlet("/editHousePetServlet")
 public class EditHousePetItemServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,7 +35,7 @@ public class EditHousePetItemServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		int tempId = Integer.parseInt(request.getParameter("id"));
 		
-		HousePetItem housePetToUpdate = housePet.searchForItemById(tempId);
+		HousePetItem housePetToUpdate = housePet.searchForSpeciesById(tempId);
 		housePetToUpdate.setName(name);
 		housePetToUpdate.setSpecies(species);
 		

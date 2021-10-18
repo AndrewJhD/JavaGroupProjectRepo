@@ -20,6 +20,6 @@ Record date: <input type ="text" name = "month" placeholder="mm" size="4" value 
 Owner Name: <input type = "text" name = "ownerName" value="${listToEdit.owner.ownerName}"><br />
 
 All Pets:<br />
-
+</form>
 </body>
 </html>

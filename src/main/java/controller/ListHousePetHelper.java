@@ -23,7 +23,7 @@ public class ListHousePetHelper {
 	
 	public List<HousePetItem> showAllItems(){
 		EntityManager em = emfactory.createEntityManager();
-		List<HousePetItem> allItems = em.createQuery("SELECT i from ListDetails i").getResultList();
+		List<HousePetItem> allItems = em.createQuery("SELECT i from HousePetItem i").getResultList();
 		return allItems;
 		
 	}
@@ -65,26 +65,26 @@ public class ListHousePetHelper {
 		em.close();
 	}
 
-	public List<HousePetItem> searchForBreedByPuppy(String animalName) {
+	public List<HousePetItem> searchForSpeciesByName(String housePetName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<HousePetItem> typedQuery = em.createQuery("select pi from HousePetItem pi where pi.name = :selectedHousePet", HousePetItem.class);
 		
-		typedQuery.setParameter("selectedHousePet", animalName);
+		typedQuery.setParameter("selectedHousePet", housePetName);
 		
 		List<HousePetItem> foundItems = typedQuery.getResultList();
 		em.close();
 		return foundItems;
 	}
 
-	public List<HousePetItem> searchForBreedByBreed(String animalName) {
+	public List<HousePetItem> searchForBreedByBreed(String speciesName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<HousePetItem> typedQuery = em.createQuery("select pi from PuppyItem pi where pi.breed = :selectedSpecies", HousePetItem.class);
+		TypedQuery<HousePetItem> typedQuery = em.createQuery("select pi from HousePetItem pi where pi.species = :selectedSpecies", HousePetItem.class);
 		
-		typedQuery.setParameter("selectedSpecies", animalName);
+		typedQuery.setParameter("selectedSpecies", speciesName);
 		
 		List<HousePetItem> foundItems = typedQuery.getResultList();
 		em.close();

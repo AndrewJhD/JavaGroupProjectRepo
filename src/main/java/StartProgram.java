@@ -52,7 +52,7 @@ public class StartProgram {
 		if (searchBy == 1) {
 			System.out.print("Enter the species name: ");
 			String speciesName = in.nextLine();
-			foundPets = hpih.searchForPetBySpecies(speciesName);
+			foundPets = hpih.searchForPetByName(speciesName);
 			
 		} else {
 			System.out.print("Enter the color: ");
@@ -70,7 +70,7 @@ public class StartProgram {
 			System.out.print("Which ID to edit: ");
 			int idToEdit = in.nextInt();
 
-			HousePetItem toEdit = hpih.searchForItemById(idToEdit);
+			HousePetItem toEdit = hpih.searchForSpeciesById(idToEdit);
 			System.out.println("Retrieved " + toEdit.getName() + " from " + toEdit.getSpecies());
 			System.out.println("1 : Update Species");
 			System.out.println("2 : Update Name");

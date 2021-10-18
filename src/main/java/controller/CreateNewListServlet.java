@@ -35,7 +35,7 @@ public class CreateNewListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HousePetItemHelper hpih = new HousePetItemHelper();
+		ListHousePetHelper hpih = new ListHousePetHelper();
 		String listName = request.getParameter("listName");		
 		String month = request.getParameter("month");
 		String day = request.getParameter("day");
@@ -55,7 +55,7 @@ public class CreateNewListServlet extends HttpServlet {
 			
 			for(int i = 0; i<selectedItems.length; i++) {
 				System.out.println(selectedItems[i]);
-				HousePetItem c = hpih.searchForItemById(Integer.parseInt(selectedItems[i]));
+				HousePetItem c = hpih.searchForSpeciesById(Integer.parseInt(selectedItems[i]));
 				selectedItemsInList.add(c);
 			}
 		}
@@ -63,7 +63,7 @@ public class CreateNewListServlet extends HttpServlet {
 		Owner owner = new Owner(ownerName);
 		ListDetails listD = new ListDetails(listName, ld, owner);
 		listD.setListOfItems(selectedItemsInList);
-		ListDetailsHelper ldh = new ListDetailsHelper();
+	/**/	ListDetailsHelper ldh = new ListDetailsHelper();
 		ldh.insertNewListDetails(listD);
 		
 		

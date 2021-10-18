@@ -8,7 +8,7 @@
 <title>House Pet List</title>
 </head>
 <body>
-<form method="post" action="listnavigationServlet">
+<form method="post" action="listNavigationServlet">
 <table>
 <c:forEach items="${requestScope.allLists}" var="currentlist">
 <tr>

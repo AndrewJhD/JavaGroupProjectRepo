@@ -18,7 +18,7 @@ public class ListDetails {
 	private int id;
 	private String listName;
 	private LocalDate adoptionDate;
-	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Owner owner;
 	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private List<HousePetItem> listOfItems;
