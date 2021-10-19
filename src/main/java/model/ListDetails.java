@@ -21,13 +21,13 @@ public class ListDetails {
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Owner owner;
 	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
-	private List<HousePetItem> listOfItems;
+	private List<PuppyItem> listOfItems;
 	
 	public ListDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ListDetails(int id, String listName, LocalDate adoptionDate, Owner owner, List<HousePetItem> listOfItems) {
+	public ListDetails(int id, String listName, LocalDate adoptionDate, Owner owner, List<PuppyItem> listOfItems) {
 		super();
 		this.id = id;
 		this.listName = listName;
@@ -35,7 +35,7 @@ public class ListDetails {
 		this.owner = owner;
 		this.listOfItems = listOfItems;
 	}
-	public ListDetails(String listName, LocalDate adoptionDate, Owner owner, List<HousePetItem> listOfItems) {
+	public ListDetails(String listName, LocalDate adoptionDate, Owner owner, List<PuppyItem> listOfItems) {
 		super();
 		this.listName = listName;
 		this.adoptionDate = adoptionDate;
@@ -63,8 +63,8 @@ public class ListDetails {
 	public LocalDate getAdoptionDate() {
 		return adoptionDate;
 	}
-	public void setAdoptionDate(LocalDate adoptiondate) {
-		this.adoptionDate = adoptiondate;
+	public void setAdoptionDate(LocalDate adoptionDate) {
+		this.adoptionDate = adoptionDate;
 	}
 	public Owner getOwner() {
 		return owner;
@@ -72,10 +72,10 @@ public class ListDetails {
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
-	public List<HousePetItem> getListOfItems() {
+	public List<PuppyItem> getListOfItems() {
 		return listOfItems;
 	}
-	public void setListOfItems(List<HousePetItem> listOfItems) {
+	public void setListOfItems(List<PuppyItem> listOfItems) {
 		this.listOfItems = listOfItems;
 	}
 	@Override

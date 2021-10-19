@@ -33,7 +33,7 @@ public class Owner {
 	public String getOwnerName() {
 	return ownerName;
 	}
-	public void setOwnerName(String ownerName) {
+	public void setShopperName(String ownerName) {
 	this.ownerName = ownerName;
 	}
 	@Override

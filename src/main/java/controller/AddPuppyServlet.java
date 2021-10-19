@@ -1,42 +1,41 @@
 package controller;
-
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.HousePetItem;
+import model.PuppyItem;
 
 /**
- * Servlet implementation class AddHousePetServlet
+ * Servlet implementation class AddPuppyServlet
  */
-@WebServlet("/addHousePetServlet")
-public class AddHousePetServlet extends HttpServlet {
+@WebServlet("/addPuppyServlet")
+public class AddPuppyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddHousePetServlet() {
+    public AddPuppyServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String species = request.getParameter("species");
+		String puppy = request.getParameter("puppy");
+		String breed = request.getParameter("breed");
 		
-		
-			HousePetItem hpi = new HousePetItem(name, species);
-			HousePetItemHelper pet = new HousePetItemHelper();
-			pet.insertItems(hpi);
-			getServletContext().getRequestDispatcher("/index.html").forward(request, response);
-		
+		PuppyItem pi = new PuppyItem(puppy, breed);
+		ListPuppyHelper dao = new ListPuppyHelper();
+		dao.insertItem(pi);
+		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 	}
 
 }

@@ -4,10 +4,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 import model.Owner;
 
 public class OwnerHelper {
-	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PuppyList");
+	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("JavaGroupProjectRepo");
 	public void insertOwner(Owner o) {
 	EntityManager em = emfactory.createEntityManager();
 	em.getTransaction().begin();

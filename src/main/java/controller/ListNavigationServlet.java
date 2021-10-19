@@ -12,7 +12,7 @@ import model.ListDetails;
 /**
  * Servlet implementation class ListNavigationServlet
  */
-@WebServlet("/listNavigationServlet")
+@WebServlet("/listnavigationServlet")
 public class ListNavigationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,55 +29,58 @@ public class ListNavigationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("House Owner: ").append(request.getContextPath());
-
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		ListDetailsHelper dao = new ListDetailsHelper();
 		String act = request.getParameter("doThisToList");
-				
-		if(act == null) {
-			//no button has been selected
+
+		if (act == null) {
+			// no button has been selected
 			getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
 		} else if (act.equals("delete")) {
 			try {
 				Integer tempId = Integer.parseInt(request.getParameter("id"));
 				ListDetails listToDelete = dao.searchForListDetailsById(tempId);
 				dao.deleteList(listToDelete);
+
 			} catch (NumberFormatException e) {
 				System.out.println("Forgot to click a button");
 			} finally {
 				getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
 			}
+
 		} else if (act.equals("edit")) {
 			try {
-						
 				Integer tempId = Integer.parseInt(request.getParameter("id"));
 				ListDetails listToEdit = dao.searchForListDetailsById(tempId);
 				request.setAttribute("listToEdit", listToEdit);
-						
 				request.setAttribute("month", listToEdit.getAdoptionDate().getMonthValue());
 				request.setAttribute("date", listToEdit.getAdoptionDate().getDayOfMonth());
 				request.setAttribute("year", listToEdit.getAdoptionDate().getYear());
-						
-				ListHousePetHelper daoForItems = new ListHousePetHelper();
-						
-				request.setAttribute("allitems", daoForItems.showAllItems());
-						
-				if(daoForItems.showAllItems().isEmpty()) {
-					request.setAttribute("allitems", " ");
+				ListPuppyHelper daoForItems = new ListPuppyHelper();
+				
+				request.setAttribute("allItems", daoForItems.showAllItems());
+							
+				if(daoForItems.showAllItems().isEmpty()){
+						request.setAttribute("allItems", " ");
 				}
-						
 				getServletContext().getRequestDispatcher("/edit-list.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
 				getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
-			}
+			} 
+
 		} else if (act.equals("add")) {
-			getServletContext().getRequestDispatcher("/new-list.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/new-list.html").forward(request, response);
 		}
-	}
+		
+		
+		
 	}
 
+}

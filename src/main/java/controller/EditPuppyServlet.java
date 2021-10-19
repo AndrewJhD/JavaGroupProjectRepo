@@ -8,17 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.PuppyItem;
+
 /**
- * Servlet implementation class ViewAllPuppysServlet
+ * Servlet implementation class EditPuppyServlet
  */
-@WebServlet("/viewAllHousePetsServlet")
-public class ViewAllHousePetsServlet extends HttpServlet {
+@WebServlet("/editPuppyServlet")
+public class EditPuppyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewAllHousePetsServlet() {
+    public EditPuppyServlet() {
         super();
         
     }
@@ -28,22 +30,25 @@ public class ViewAllHousePetsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ListHousePetHelper dao = new ListHousePetHelper();
-		request.setAttribute("allHousePets", dao.showAllItems());
-				String path = "/housepet-lists.jsp";
-				if
-				(dao.showAllItems().isEmpty()){
-						path = "/index.html";
-				}
-				getServletContext().getRequestDispatcher(path).forward(request,response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ListPuppyHelper dao = new ListPuppyHelper();
 		
-		doGet(request, response);
+		String puppy = request.getParameter("puppy");
+		String breed = request.getParameter("breed");
+		Integer tempId = Integer.parseInt(request.getParameter("id"));
+		
+		PuppyItem puppyToUpdate = dao.searchForBreedById(tempId);
+		puppyToUpdate.setBreed(breed);
+		puppyToUpdate.setPuppy(puppy);
+		
+		dao.updateItem(puppyToUpdate);
+		getServletContext().getRequestDispatcher("/viewAllPuppysServlet").forward(request, response);
 	}
 
 }

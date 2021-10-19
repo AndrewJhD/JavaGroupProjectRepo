@@ -18,7 +18,7 @@ Owner Name: <input type="text" name = "ownerName"><br />
 Available Items:<br />
 <select name = "allItemsToAdd" multiple size = "6">
 <c:forEach items = "${requestScope.allItems}" var="currentitem">
-<option value = "${currentitem.id}"> ${currentitem.name} | ${currentitem.species}</option>
+<option value = "${currentitem.id}"> ${currentitem.puppy} | ${currentitem.breed}</option>
 </c:forEach>
 </select>
 <br />

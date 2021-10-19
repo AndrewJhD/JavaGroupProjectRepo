@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>House Pet List</title>
+<title>Shopping List</title>
 </head>
 <body>
-<form method="post" action="listNavigationServlet">
+<form method="post" action="listnavigationServlet">
 <table>
 <c:forEach items="${requestScope.allLists}" var="currentlist">
 <tr>
@@ -26,7 +26,7 @@
 <c:forEach var="listVal" items="${currentlist.listOfItems}">
 <tr><td></td>
 <td colspan="3">
-${listVal.name}, ${listVal.species}
+${listVal.puppy}, ${listVal.breed}
 </td>
 </tr>
 </c:forEach>

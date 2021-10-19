@@ -31,16 +31,13 @@ public class ViewAllListsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		ListDetailsHelper slh = new ListDetailsHelper();
 		List<ListDetails> abc = slh.getLists();
 		request.setAttribute("allLists", abc);
-		
-		if(abc.isEmpty()) {
-			request.setAttribute("allLists", " ");
+		if(abc.isEmpty()){
+		request.setAttribute("allLists", " ");
 		}
-		
-		getServletContext().getRequestDispatcher("/housepet-list-by-user.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/puppy-list-by-user.jsp").forward(request, response);
 	}
 
 	/**

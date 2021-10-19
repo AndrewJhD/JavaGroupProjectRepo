@@ -11,15 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.HousePetItem;
 import model.ListDetails;
+import model.PuppyItem;
 import model.Owner;
-
 
 /**
  * Servlet implementation class EditListDetailsServlet
  */
-@WebServlet("/EditListDetailsServlet")
+@WebServlet("/editListDetailsServlet")
 public class EditListDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,52 +43,56 @@ public class EditListDetailsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*ListDetailsHelper ldh = new ListDetailsHelper();
-		HousePetItemHelper hpih = new HousePetItemHelper();
-		OwnerHelper oh = new OwnerHelper();
+		ListDetailsHelper dao = new ListDetailsHelper();
+		ListPuppyHelper lih = new ListPuppyHelper();
+		Helper sh = new OwnerHelper();
+		
 		
 		Integer tempId = Integer.parseInt(request.getParameter("id"));
-		ListDetails listDetailsToUpdate = ldh.searchForListDetailsById(tempId);
-		
-		String newOwnerName = request.getParameter("ownerName");
-		
+		ListDetails listToUpdate = dao.searchForListDetailsById(tempId);
+
+		String newListName = request.getParameter("listName");
+
 		String month = request.getParameter("month");
 		String day = request.getParameter("day");
 		String year = request.getParameter("year");
 		
 		String ownerName = request.getParameter("ownerName");
-		//Owner newOwner = oh.findOwner(ownerName);
 		
+		Owner newOwner = sh.findOwner(ownerName);
+
 		LocalDate ld;
 		try {
 			ld = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-		} catch (NumberFormatException ex){
+		} catch (NumberFormatException ex) {
 			ld = LocalDate.now();
 		}
-		
+
 		try {
-			String[] selectedHousePets = request.getParameterValues("allHousePetsToAdd");
-			List<HousePetItem> selectedHousePetsInList = new ArrayList<HousePetItem>();
-			
-			for (int i = 0; i < selectedHousePets.length; i++) {
-				System.out.println(selectedHousePets[i]);
-				HousePetItem c = hpih.searchForItemById(Integer.parseInt(selectedHousePets[i]));
-				selectedHousePetsInList.add(c);
+			//items are selected in list to add
+			String[] selectedItems = request.getParameterValues("allItemsToAdd");
+			List<PuppyItem> selectedItemsInList = new ArrayList<PuppyItem>();
+
+			for (int i = 0; i < selectedItems.length; i++) {
+				System.out.println(selectedItems[i]);
+				ListItem c = lih.searchForItemById(Integer.parseInt(selectedItems[i]));
+				selectedItemsInList.add(c);
+
 			}
-			listDetailsToUpdate.setListOfItems(selectedHousePetsInList);
+			listToUpdate.setListOfItems(selectedItemsInList);
 		} catch (NullPointerException ex) {
-			//no items selected in list - set to an empty list
-			List<HousePetItem> selectedHousePetsInList = new ArrayList<HousePetItem>();
-			listDetailsToUpdate.setListOfItems(selectedHousePetsInList);
+			// no items selected in list - set to an empty list
+			List<PuppyItem> selectedItemsInList = new ArrayList<PuppyItem>();
+			listToUpdate.setListOfItems(selectedItemsInList);
 		}
-		
-		listDetailsToUpdate.setListName(newOwnerName);
-		listDetailsToUpdate.setTripDate(ld);
-		listDetailsToUpdate.setOwner(newOwner);
-		
-		ldh.updateList(listDetailsToUpdate);
-		
-		getServletContext().getRequestDispatcher("/viewAllHousePetsServlet").forward(request, response);*/
+
+		listToUpdate.setListName(newListName);
+		listToUpdate.setTripDate(ld);
+		listToUpdate.setOwner(newOwner);
+
+		dao.updateList(listToUpdate);
+
+		getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
 	}
 
 }

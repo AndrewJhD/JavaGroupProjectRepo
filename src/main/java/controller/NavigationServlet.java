@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.HousePetItem;
+import model.PuppyItem;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -21,52 +21,53 @@ public class NavigationServlet extends HttpServlet {
      */
     public NavigationServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-    /**
+
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		// TODO Auto-generated method stub
-		response.getWriter().append("Pet Owner: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-		
-		HousePetItemHelper hpih = new HousePetItemHelper();
-		
-		String act = request.getParameter("doThisToHousePet");
-		
-		String path = "/viewAllHousePetsServlet";
-		
+		ListPuppyHelper dao = new ListPuppyHelper();
+		String act = request.getParameter("doThisToPuppy");
+
+		// after all changes, we should redirect to the viewAllItems servlet
+		// The only time we don't is if they select to add a new item or edit
+		String path = "/viewAllPuppysServlet";
+
 		if (act.equals("delete")) {
-			
 			try {
-				int tempId = Integer.parseInt(request.getParameter("id"));
-				HousePetItem housePetToDelete = hpih.searchForSpeciesById(tempId);
-				hpih.deleteItems(housePetToDelete);
+				Integer tempId = Integer.parseInt(request.getParameter("id"));
+				PuppyItem puppyToDelete = dao.searchForBreedById(tempId);
+				dao.deleteItem(puppyToDelete);
+
 			} catch (NumberFormatException e) {
-				System.out.println("Forgot to select a Pet");
+				System.out.println("Forgot to select an puppy");
 			}
-			
+
 		} else if (act.equals("edit")) {
 			try {
-				int tempID = Integer.parseInt(request.getParameter("id"));
-				HousePetItem housePetToEdit = hpih.searchForSpeciesById(tempID);
-				request.setAttribute("petToEdit", housePetToEdit);
-				path = "/edit-housepet.jsp";
+				Integer tempId = Integer.parseInt(request.getParameter("id"));
+				PuppyItem puppyToEdit = dao.searchForBreedById(tempId);
+				request.setAttribute("puppyToEdit", puppyToEdit);
+				path = "/edit-puppy.jsp";
 			} catch (NumberFormatException e) {
-				System.out.println("Forgot to select a Pet");
+				System.out.println("Forgot to select an puppy");
 			}
-			
+
 		} else if (act.equals("add")) {
 			path = "/index.html";
+
 		}
-		
-		getServletContext().getRequestDispatcher(path).forward(request,response);
+
+		getServletContext().getRequestDispatcher(path).forward(request, response);
 	}
 
 }

@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.HousePetItem;
 import model.ListDetails;
 import model.Owner;
+import model.PuppyItem;
 
 /**
  * Servlet implementation class CreateNewListServlet
@@ -35,37 +35,40 @@ public class CreateNewListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ListHousePetHelper hpih = new ListHousePetHelper();
-		String listName = request.getParameter("listName");		
+		ListPuppyHelper lih = new ListPuppyHelper();
+		String listName = request.getParameter("listName");
+		
 		String month = request.getParameter("month");
 		String day = request.getParameter("day");
 		String year = request.getParameter("year");
+
 		String ownerName = request.getParameter("ownerName");
+
 		LocalDate ld;
 		try {
 			ld = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
-		} catch(NumberFormatException ex) {
+		}catch (NumberFormatException ex){
 			ld = LocalDate.now();
 		}
 		
-		String[] selectedItems = request.getParameterValues("allHousePetsToAdd");
-		List<HousePetItem> selectedItemsInList = new ArrayList<HousePetItem>();
-		//make sure something was selected = otherwise we get a null pointer exception
-		if(selectedItems != null && selectedItems.length > 0) {
-			
+		String[] selectedItems = request.getParameterValues("allItemsToAdd");
+		List<PuppyItem> selectedItemsInList = new ArrayList<PuppyItem>();
+		
+		if(selectedItems != null && selectedItems.length > 0){
 			for(int i = 0; i<selectedItems.length; i++) {
-				System.out.println(selectedItems[i]);
-				HousePetItem c = hpih.searchForSpeciesById(Integer.parseInt(selectedItems[i]));
+				PuppyItem c = lih.searchForBreedById(Integer.parseInt(selectedItems[i]));
 				selectedItemsInList.add(c);
 			}
 		}
 		
 		Owner owner = new Owner(ownerName);
-		ListDetails listD = new ListDetails(listName, ld, owner);
-		listD.setListOfItems(selectedItemsInList);
-	/**/	ListDetailsHelper ldh = new ListDetailsHelper();
-		ldh.insertNewListDetails(listD);
 		
+		ListDetails sld = new ListDetails(listName, ld, owner);
+		
+		sld.setListOfItems(selectedItemsInList);
+		
+		ListDetailsHelper slh = new ListDetailsHelper();
+		slh.insertNewListDetails(sld);
 		
 		getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
 	}
