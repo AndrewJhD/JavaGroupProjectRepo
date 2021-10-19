@@ -13,7 +13,7 @@ List Name: <input type="text" name = "listName"><br />
 Adoption Date: <input type="text" name = "month" placeholder="mm" size="4">
 <input type="text" name = "day" placeholder="dd" size="4">
 <input type="text" name = "year" placeholder="yyyy" size="4">
-Owner Name: <input type="text" name = "OwnerName"><br />
+Owner Name: <input type="text" name = "ownerName"><br />
 
 Available Items:<br />
 <select name = "allItemsToAdd" multiple size = "6">

@@ -67,7 +67,7 @@ public class CreateNewListServlet extends HttpServlet {
 		ldh.insertNewListDetails(listD);
 		
 		
-		getServletContext().getRequestDispatcher("/viewAllHousePetsServlet").forward(request, response);
+		getServletContext().getRequestDispatcher("/viewAllListsServlet").forward(request, response);
 	}
 
 	/**
