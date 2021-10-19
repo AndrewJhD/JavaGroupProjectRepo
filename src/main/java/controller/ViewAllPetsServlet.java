@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ViewAllPuppysServlet
+ * Servlet implementation class ViewAllPetsServlet
  */
-@WebServlet("/viewAllPuppysServlet")
-public class ViewAllPuppysServlet extends HttpServlet {
+@WebServlet("/viewAllPetsServlet")
+public class ViewAllPetsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewAllPuppysServlet() {
+    public ViewAllPetsServlet() {
         super();
         
     }
@@ -27,9 +27,9 @@ public class ViewAllPuppysServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ListPuppyHelper dao = new ListPuppyHelper();
+		ListPetHelper dao = new ListPetHelper();
 		request.setAttribute("allPuppys", dao.showAllItems());
-				String path = "/puppy-list.jsp";
+				String path = "/pet-list.jsp";
 				if
 				(dao.showAllItems().isEmpty()){
 						path = "/index.html";

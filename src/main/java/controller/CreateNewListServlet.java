@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.ListDetails;
 import model.Owner;
-import model.PuppyItem;
+import model.PetItem;
 
 /**
  * Servlet implementation class CreateNewListServlet
@@ -35,7 +35,7 @@ public class CreateNewListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ListPuppyHelper lih = new ListPuppyHelper();
+		ListPetHelper lih = new ListPetHelper();
 		String listName = request.getParameter("listName");
 		
 		String month = request.getParameter("month");
@@ -52,11 +52,11 @@ public class CreateNewListServlet extends HttpServlet {
 		}
 		
 		String[] selectedItems = request.getParameterValues("allItemsToAdd");
-		List<PuppyItem> selectedItemsInList = new ArrayList<PuppyItem>();
+		List<PetItem> selectedItemsInList = new ArrayList<PetItem>();
 		
 		if(selectedItems != null && selectedItems.length > 0){
 			for(int i = 0; i<selectedItems.length; i++) {
-				PuppyItem c = lih.searchForBreedById(Integer.parseInt(selectedItems[i]));
+				PetItem c = lih.searchForBreedById(Integer.parseInt(selectedItems[i]));
 				selectedItemsInList.add(c);
 			}
 		}

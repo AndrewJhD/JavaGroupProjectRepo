@@ -37,7 +37,7 @@ public class ViewAllListsServlet extends HttpServlet {
 		if(abc.isEmpty()){
 		request.setAttribute("allLists", " ");
 		}
-		getServletContext().getRequestDispatcher("/puppy-list-by-user.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/pet-list-by-user.jsp").forward(request, response);
 	}
 
 	/**

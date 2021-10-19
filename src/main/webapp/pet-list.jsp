@@ -13,8 +13,8 @@
 <c:forEach items="${requestScope.allPuppys}" var="currentpuppy">
 <tr>
    <td><input type="radio" name="id" value="${currentpuppy.id}" ></td>
-   <td>${currentpuppy.puppy}</td>
-   <td>${currentpuppy.breed}</td>
+   <td>${currentpuppy.name}</td>
+   <td>${currentpuppy.species}</td>
    </tr>
 </c:forEach>
 </table>

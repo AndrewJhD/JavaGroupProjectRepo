@@ -7,12 +7,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import model.PuppyItem;
+import model.PetItem;
 
-public class ListPuppyHelper {
+public class ListPetHelper {
 	static EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("JavaGroupProjectRepo");
 	
-	public void insertItem(PuppyItem pi) {
+	public void insertItem(PetItem pi) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		em.persist(pi);
@@ -21,41 +21,41 @@ public class ListPuppyHelper {
 		
 	}
 	
-	public List<PuppyItem> showAllItems(){
+	public List<PetItem> showAllItems(){
 		EntityManager em = emfactory.createEntityManager();
-		List<PuppyItem> allItems = em.createQuery("SELECT i from PuppyItem i").getResultList();
+		List<PetItem> allItems = em.createQuery("SELECT i from PetItem i").getResultList();
 		return allItems;
 		
 	}
 
-	public void deleteItem(PuppyItem toDelete) {
+	public void deleteItem(PetItem toDelete) {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<PuppyItem> typedQuery = em.createQuery("select pi from PuppyItem pi where pi.puppy = :selectedPuppy and pi.breed = :selectedBreed", PuppyItem.class);
+		TypedQuery<PetItem> typedQuery = em.createQuery("select pi from PetItem pi where pi.name = :selectedName and pi.species = :selectedSpecies", PetItem.class);
 		
-		typedQuery.setParameter("selectedPuppy", toDelete.getPuppy());
-		typedQuery.setParameter("selectedBreed", toDelete.getBreed());
+		typedQuery.setParameter("selectedName", toDelete.getName());
+		typedQuery.setParameter("selectedSpecies", toDelete.getSpecies());
 		
 		typedQuery.setMaxResults(1);
 		
-		PuppyItem result = typedQuery.getSingleResult();
+		PetItem result = typedQuery.getSingleResult();
 		
 		em.remove(result);
 		em.getTransaction().commit();
 		em.close();
 	}
 
-	public PuppyItem searchForBreedById(int idToEdit) {
+	public PetItem searchForBreedById(int idToEdit) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		
-		PuppyItem found = em.find(PuppyItem.class, idToEdit);
+		PetItem found = em.find(PetItem.class, idToEdit);
 		em.close();
 		return found;
 	}
 
-	public void updateItem(PuppyItem toEdit) {
+	public void updateItem(PetItem toEdit) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -65,28 +65,28 @@ public class ListPuppyHelper {
 		em.close();
 	}
 
-	public List<PuppyItem> searchForBreedByPuppy(String puppyName) {
+	public List<PetItem> searchForBreedByPuppy(String petName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<PuppyItem> typedQuery = em.createQuery("select pi from PuppyItem pi where pi.puppy = :selectedPuppy", PuppyItem.class);
+		TypedQuery<PetItem> typedQuery = em.createQuery("select pi from PetItem pi where pi.name = :selectedName", PetItem.class);
 		
-		typedQuery.setParameter("selectedPuppy", puppyName);
+		typedQuery.setParameter("selectedName", petName);
 		
-		List<PuppyItem> foundItems = typedQuery.getResultList();
+		List<PetItem> foundItems = typedQuery.getResultList();
 		em.close();
 		return foundItems;
 	}
 
-	public List<PuppyItem> searchForBreedByBreed(String breedName) {
+	public List<PetItem> searchForBreedByBreed(String speciesName) {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<PuppyItem> typedQuery = em.createQuery("select pi from PuppyItem pi where pi.breed = :selectedBreed", PuppyItem.class);
+		TypedQuery<PetItem> typedQuery = em.createQuery("select pi from PetItem pi where pi.breed = :selectedSpecies", PetItem.class);
 		
-		typedQuery.setParameter("selectedBreed", breedName);
+		typedQuery.setParameter("selectedSpecies", speciesName);
 		
-		List<PuppyItem> foundItems = typedQuery.getResultList();
+		List<PetItem> foundItems = typedQuery.getResultList();
 		em.close();
 		return foundItems;
 	}

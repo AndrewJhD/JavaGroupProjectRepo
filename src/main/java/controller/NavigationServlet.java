@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.PuppyItem;
+import model.PetItem;
 
 /**
  * Servlet implementation class NavigationServlet
@@ -35,31 +35,31 @@ public class NavigationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ListPuppyHelper dao = new ListPuppyHelper();
+		ListPetHelper dao = new ListPetHelper();
 		String act = request.getParameter("doThisToPuppy");
 
 		// after all changes, we should redirect to the viewAllItems servlet
 		// The only time we don't is if they select to add a new item or edit
-		String path = "/viewAllPuppysServlet";
+		String path = "/viewAllPetsServlet";
 
 		if (act.equals("delete")) {
 			try {
 				Integer tempId = Integer.parseInt(request.getParameter("id"));
-				PuppyItem puppyToDelete = dao.searchForBreedById(tempId);
+				PetItem puppyToDelete = dao.searchForBreedById(tempId);
 				dao.deleteItem(puppyToDelete);
 
 			} catch (NumberFormatException e) {
-				System.out.println("Forgot to select an puppy");
+				System.out.println("Forgot to select an pet");
 			}
 
 		} else if (act.equals("edit")) {
 			try {
 				Integer tempId = Integer.parseInt(request.getParameter("id"));
-				PuppyItem puppyToEdit = dao.searchForBreedById(tempId);
+				PetItem puppyToEdit = dao.searchForBreedById(tempId);
 				request.setAttribute("puppyToEdit", puppyToEdit);
-				path = "/edit-puppy.jsp";
+				path = "/edit-pet.jsp";
 			} catch (NumberFormatException e) {
-				System.out.println("Forgot to select an puppy");
+				System.out.println("Forgot to select an pet");
 			}
 
 		} else if (act.equals("add")) {

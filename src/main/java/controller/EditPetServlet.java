@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.PuppyItem;
+import model.PetItem;
 
 /**
- * Servlet implementation class EditPuppyServlet
+ * Servlet implementation class EditPetServlet
  */
-@WebServlet("/editPuppyServlet")
-public class EditPuppyServlet extends HttpServlet {
+@WebServlet("/editPetServlet")
+public class EditPetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditPuppyServlet() {
+    public EditPetServlet() {
         super();
         
     }
@@ -37,18 +37,18 @@ public class EditPuppyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ListPuppyHelper dao = new ListPuppyHelper();
+		ListPetHelper dao = new ListPetHelper();
 		
-		String puppy = request.getParameter("puppy");
-		String breed = request.getParameter("breed");
+		String name = request.getParameter("name");
+		String species = request.getParameter("species");
 		Integer tempId = Integer.parseInt(request.getParameter("id"));
 		
-		PuppyItem puppyToUpdate = dao.searchForBreedById(tempId);
-		puppyToUpdate.setBreed(breed);
-		puppyToUpdate.setPuppy(puppy);
+		PetItem petToUpdate = dao.searchForBreedById(tempId);
+		petToUpdate.setSpecies(name);
+		petToUpdate.setName(species);
 		
-		dao.updateItem(puppyToUpdate);
-		getServletContext().getRequestDispatcher("/viewAllPuppysServlet").forward(request, response);
+		dao.updateItem(petToUpdate);
+		getServletContext().getRequestDispatcher("/viewAllPetsServlet").forward(request, response);
 	}
 
 }

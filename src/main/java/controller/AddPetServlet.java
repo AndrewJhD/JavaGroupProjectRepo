@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.PuppyItem;
+import model.PetItem;
 
 /**
- * Servlet implementation class AddPuppyServlet
+ * Servlet implementation class AddPetServlet
  */
-@WebServlet("/addPuppyServlet")
-public class AddPuppyServlet extends HttpServlet {
+@WebServlet("/addPetServlet")
+public class AddPetServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddPuppyServlet() {
+    public AddPetServlet() {
         super();
     }
 
@@ -29,11 +29,11 @@ public class AddPuppyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String puppy = request.getParameter("puppy");
-		String breed = request.getParameter("breed");
+		String name = request.getParameter("name");
+		String species = request.getParameter("species");
 		
-		PuppyItem pi = new PuppyItem(puppy, breed);
-		ListPuppyHelper dao = new ListPuppyHelper();
+		PetItem pi = new PetItem(name, species);
+		ListPetHelper dao = new ListPetHelper();
 		dao.insertItem(pi);
 		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 	}

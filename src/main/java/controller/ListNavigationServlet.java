@@ -63,7 +63,7 @@ public class ListNavigationServlet extends HttpServlet {
 				request.setAttribute("month", listToEdit.getAdoptionDate().getMonthValue());
 				request.setAttribute("date", listToEdit.getAdoptionDate().getDayOfMonth());
 				request.setAttribute("year", listToEdit.getAdoptionDate().getYear());
-				ListPuppyHelper daoForItems = new ListPuppyHelper();
+				ListPetHelper daoForItems = new ListPetHelper();
 				
 				request.setAttribute("allItems", daoForItems.showAllItems());
 							

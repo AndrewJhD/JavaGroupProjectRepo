@@ -28,7 +28,7 @@ public class AddItemsForListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ListPuppyHelper dao = new ListPuppyHelper();
+		ListPetHelper dao = new ListPetHelper();
 		
 		request.setAttribute("allItems", dao.showAllItems());
 		
